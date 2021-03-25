@@ -11,6 +11,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'middleware' => ['api', 'A
 });
 
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('register', 'API\RegisterController@register');
+Route::post('login', 'API\RegisterController@login');

@@ -59,6 +59,9 @@
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                 @Logged()
+                                <p>
+                                        {{ auth()->user()->name }} <br/>
+                                    </p>
                                     <p>
                                         {{ auth()->user()->email }} <br/>
                                     </p>
@@ -66,9 +69,9 @@
 
                                 <!-- Menu Footer-->
                                     
-                                    <div class="pull-right">
+                                    <div style="text-align:center">
                                         {!! Form::open(['url'=>'logout']) !!}
-                                            <button type="submit" class="btn btn-danger btn-flat"  style="width:120px">Desloguearse</button>
+                                            <button type="submit" class="btn btn-danger btn-flat"   >Desloguearse</button>
                                         {!! Form::close() !!}
                                     </div>
                                 </li>
