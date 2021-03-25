@@ -13,3 +13,4 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'middleware' => ['api', 'A
 
 Route::post('register', 'API\RegisterController@register');
 Route::post('login', 'API\RegisterController@login');
+Route::post('login', 'API\RegisterController@login');
