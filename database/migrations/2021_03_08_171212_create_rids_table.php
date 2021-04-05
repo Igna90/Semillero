@@ -17,9 +17,9 @@ class CreateRidsTable extends Migration
             $table->engine="InnoDB";
             $table->bigIncrements('id'); 
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');;
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedBigInteger('plague_id');
-            $table->foreign('plague_id')->references('id')->on('plagues');
+            $table->foreign('plague_id')->references('id')->on('plagues')->onDelete('cascade');;
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
