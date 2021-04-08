@@ -95,18 +95,18 @@ class LikesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Likes $likes)
+    public function destroy(Likes $like, Request $request)
     {
-        // $input = $request->all();
-        // $validator = Validator::make($input, [
-        //     'opinion_id' => 'required',
-        //     'user_id' => 'required',
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'opinion_id' => 'required',
+            'user_id' => 'required',
 
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(['error' => $validator->errors()], 401);
-        // }
-        $likes->delete();
-        return response()->json(['likes' => $likes->toArray()], $this->successStatus);
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+        $like->delete();
+        return response()->json(['likes' => $like->toArray()], $this->successStatus);
     }
 }

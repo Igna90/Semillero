@@ -58,10 +58,10 @@ class OpinionsController extends Controller
         $opinions->save();
         return response()->json(['opinions' => $opinions->toArray()], $this->successStatus);
     }
-    public function destroy(Opinions $opinions)
+    public function destroy(Opinions $opinion)
     {
-        $opinions->delete();
-        return response()->json(['opinions' => $opinions->toArray()], $this->successStatus);
+        $opinion->delete();
+        return response()->json(['opinions' => $opinion->toArray()], $this->successStatus);
     }
 
 }
