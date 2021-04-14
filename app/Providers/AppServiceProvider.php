@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             return auth()->check();
         });
         \Blade::if ('LoggedAD', function() {
-            return auth()->check() && auth()->user()->type === 'ad';
+            return auth()->check() && auth()->user()->type === 'Admin';
         });
     }
 }
