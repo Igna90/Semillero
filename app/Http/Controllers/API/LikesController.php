@@ -5,8 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Likes;
-use APP\Opinions;
-use APP\User;
+use App\Opinions;
 use Validator;
 
 class LikesController extends Controller
@@ -50,8 +49,15 @@ class LikesController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
+
+        $opinion_id = $request->input('opinion_id');
+        $opinion = Opinions::find($opinion_id);
+        $opinion->num_likes += 1;
+        $opinion->save();
+        
+
         $like = Likes::create($input);
-        return response()->json(['success' => true, 'data' => $like->toarray()], $this->successStatus);
+        return response()->json(['success' => true, 'data' => $like, $opinion->toarray()], $this->successStatus);
     }
 
     /**
@@ -106,7 +112,13 @@ class LikesController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
+
+        $opinion_id = $request->input('opinion_id');
+        $opinion = Opinions::find($opinion_id);
+        $opinion->num_likes -= 1;
+        $opinion->save();
+        
         $like->delete();
-        return response()->json(['likes' => $like->toArray()], $this->successStatus);
+        return response()->json(['likes' => $like,$opinion->toArray()], $this->successStatus);
     }
 }
