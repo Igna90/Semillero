@@ -14,5 +14,13 @@
             <span>Usuarios</span>
         </a>
     </li>
+    <li>
+        <a href="{{ url('/correos') }}">
+
+            <i class="fa fa-envelope-o"></i>
+            <span>Enviar correos</span>
+        </a>
+    </li>
+
     @endLoggedAD()
 </ul>

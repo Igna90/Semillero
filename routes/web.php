@@ -21,5 +21,7 @@ Route::view('privilegios', 'privilegios');
 //Permisos por usuario logueado
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('usuario', 'UsuarioController');
+    Route::resource('correos', 'EnvioController');
+    Route::post('/enviarEmail', 'EnvioController@enviarEmail')->name('enviarEmail');
     Route::get('/profile', 'ProfileController@index')->name('profile');
 });
