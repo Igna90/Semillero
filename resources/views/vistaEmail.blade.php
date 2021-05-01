@@ -6,9 +6,10 @@
 </head>
 
 <body>
+    
     <h2>Informacion del producto: {{$productos}}</h2>
     <h2>Queremos contarte:{{$mensaje}}</h2>
-    
+
 </body>
 
 </html>

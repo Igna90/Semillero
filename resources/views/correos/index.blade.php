@@ -15,6 +15,8 @@ Envio Correo | Semillero
 <h1 class="h3 mb-0 text-gray-800 text-center">Envio de correos</h1>
 @endsection
 @section('content')
+<form action="{{route('enviarEmail')}}" method="POST">
+                                {{ csrf_field() }}
 <div class="row">
     <div class="col-xs-12">
         <div class="box" style="border:1px solid #d2d6de;">
@@ -45,14 +47,15 @@ Envio Correo | Semillero
                             <td>{{ $usuario->name}}</td>
                             <td>{{ $usuario->surname}} </td>
                             <td>{{ $usuario->email}}</td>
-                            <td class="actions">
-                                <ul class="list-inline" style="margin-bottom:0px;">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="{{$usuario->id}}">
-                                        </label>
-                                    </div>
-                            </td>
+                            
+                                <td class="actions">
+                                    <ul class="list-inline" style="margin-bottom:0px;">
+                                        <div class="form-group">
+                                            <label>
+                                                <input type="checkbox" name="email[]" value="{{$usuario->email}}">     
+                                            </label>
+                                        </div>
+                                </td>
 
                         </tr>
                         @endif
@@ -61,31 +64,30 @@ Envio Correo | Semillero
                     </tbody>
                 </table>
             </div>
-            <form action="{{route('enviarEmail')}}" method="POST">
-                {{ csrf_field() }}
-                <div class="form-group" style="padding-left: 20px;">
-                    <h4>Selección de productos:</h4>
-                    <select name="productos">
-                        @foreach($productos as $producto)
-                        <option value="{{ $producto['name'] }}">{{ $producto['name'] }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <br>
-                <div class="form-group" style="padding-left: 20px;">
-                    <h4>Asunto email:</h4>
-                    <label for="asunto"></label>
-                    <input type="text" name="asunto" size="64" />
-                </div>
-                <br>
-                <div class="form-group" style="padding-left: 20px;">
-                    <h4>Mensaje:</h4>
-                    <label for="Mensaje"></label>
-                    <textarea name="mensaje" placeholder="Envia la información del producto" cols="66" rows="5"></textarea>
-                </div>
-                <br>
-                <br>
-                <input type="submit" value="Enviar email" style="margin-left: 450px; margin-bottom:40px" class="btn-success">
+            
+            <div class="form-group" style="padding-left: 20px;">
+                <h4>Selección de productos:</h4>
+                <select name="productos">
+                    @foreach($productos as $producto)
+                    <option value="{{ $producto['name'] }}">{{ $producto['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+            <div class="form-group" style="padding-left: 20px;">
+                <h4>Asunto email:</h4>
+                <label for="asunto"></label>
+                <input type="text" name="asunto" size="64" />
+            </div>
+            <br>
+            <div class="form-group" style="padding-left: 20px;">
+                <h4>Mensaje:</h4>
+                <label for="Mensaje"></label>
+                <textarea name="mensaje" placeholder="Envia la información del producto" cols="66" rows="5"></textarea>
+            </div>
+            <br>
+            <br>
+            <input type="submit" value="Enviar email" style="margin-left: 450px; margin-bottom:40px" class="btn-success">
 
             </form>
             {{$usuarios->links()}}

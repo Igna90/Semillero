@@ -17,18 +17,18 @@ class EnvioController extends Controller
         return view('correos.index', $datos, $products);
     }
 
-    public function enviarEmail(Request $request){
-   
-    $data = [
-            'emailto' => "ignacastrisa@gmail.com",
-            ];
-            
-    Mail::send('vistaEmail', $request->all(), function($message) use($data,$request){
-        $message->from("ignatiusceferon@gmail.com");
-        $message->to($data['emailto'])->subject($request['asunto']);
-    });
-    return redirect()->back();
-}
-       
+    public function enviarEmail(Request $request)
+    {
 
+        $emails = $request['email'];
+       foreach ($emails as $i) {
+        
+            Mail::send('vistaEmail', $request->all(), function ($msg) use ($request,$i) {
+                $msg->from("ignatiusceferon@gmail.com");
+                $msg->to($i)->subject($request['asunto']);
+            });
+        }
+
+        return redirect()->back();
+    }
 }
