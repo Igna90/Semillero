@@ -32,7 +32,7 @@ class EnvioController extends Controller
                 'asunto.required' => __("Por favor el campo asunto  es requerido"),
                 'mensaje.required' => __("Por favor el campo mensaje es requerido"),
                 'productos.required' => __("Por favor el campo producto es requerido"),
-                'email.required' => __("Por favor seleccione al menos un email"),
+                'email.required' => __("Por favor elija al menos un email"),
             ]
         );
 
