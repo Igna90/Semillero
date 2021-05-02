@@ -20,10 +20,26 @@ class EnvioController extends Controller
     public function enviarEmail(Request $request)
     {
 
+        $this->validate(
+            request(),
+            [
+                'asunto' => 'required|max:100',
+                'mensaje' => 'required|max:500',
+                'productos' => 'required|not_in:ninguno',
+                'email' => 'required'
+            ],
+            [
+                'asunto.required' => __("Por favor el campo asunto  es requerido"),
+                'mensaje.required' => __("Por favor el campo mensaje es requerido"),
+                'productos.required' => __("Por favor el campo producto es requerido"),
+                'email.required' => __("Por favor seleccione al menos un email"),
+            ]
+        );
+
         $emails = $request['email'];
-       foreach ($emails as $i) {
-        
-            Mail::send('vistaEmail', $request->all(), function ($msg) use ($request,$i) {
+        foreach ($emails as $i) {
+
+            Mail::send('vistaEmail', $request->all(), function ($msg) use ($request, $i) {
                 $msg->from("ignatiusceferon@gmail.com");
                 $msg->to($i)->subject($request['asunto']);
             });
