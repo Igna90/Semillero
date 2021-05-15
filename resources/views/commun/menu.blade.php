@@ -21,6 +21,13 @@
             <span>Enviar correos</span>
         </a>
     </li>
+    <li>
+        <a href="{{ url('/opiniones') }}">
+
+            <i class="fa fa-file-pdf-o"></i>
+            <span>Reportes en pdf</span>
+        </a>
+    </li>
 
     @endLoggedAD()
 </ul>

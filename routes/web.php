@@ -24,4 +24,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('correos', 'EnvioController');
     Route::post('/enviarEmail', 'EnvioController@enviarEmail')->name('enviarEmail');
     Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::resource('opiniones', 'PDFController');
+    Route::get('/pdf', 'PDFController@PDF')->name('descargarPDF');
 });
